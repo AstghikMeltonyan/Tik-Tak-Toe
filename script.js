@@ -25,12 +25,13 @@ function openModal() {
     startBtn.style.display = 'none';
 }
 
+
 let n;
 const result = [];
 function createBlock(e) {
     e.preventDefault();
     var n = input.value;
-    if (n > 10 || n < 3) return;
+    if (n > 7 || n < 3) return;
     for (var i = 0; i < n; i++) {
         result[i] = [];
         for (var j = 0; j < input.value; j++) {
@@ -43,11 +44,13 @@ function createBlock(e) {
 
             gameArea.style.width = `${input.value * 50}px`;
             gameArea.style.heigh = `${input.value * 50}px`;
+
         }
     }
     modalWindow.style.display = 'none';
     input.value = '';
-    title.style.display = 'none';
+    title.innerHTML = `Player X's Start`;
+    title.style.fontSize = '1.2rem';
     controlBtn.style.display = 'initial';
 }
 
@@ -56,12 +59,14 @@ var qayl = 0;
 
 gameArea.onclick = function (e) {
     if (e.target.innerHTML) return;
-
+    document.innerHTML = 'Go X'
     if (e.target.classList == "block") {
         if (qayl % 2 == 0) {
             e.target.innerHTML = 'X';
+            title.innerHTML = `Player 0's turn`;
         } else {
             e.target.innerHTML = '0'
+            title.innerHTML = `Player X's turn`;
         }
         qayl++;
     }
@@ -85,13 +90,13 @@ function checkWinner() {
                 countX++;
                 if (result.length == countX) {
                     winnerWindow.classList.add('active');
-                    winnerText.innerHTML = `'X'  is  win  <i class="fa-solid fa-thumbs-up"></i>`;
+                    winnerText.innerHTML = ` <i class="fa-solid fa-trophy"></i>  Winner is  X `;
                 }
             } else if (result[i][j].innerHTML == '0') {
                 countY++;
                 if (result.length == countY) {
                     winnerWindow.classList.add('active');
-                    winnerText.innerHTML = `'0'  is  win  <i class="fa-solid fa-thumbs-up"></i>`;
+                    winnerText.innerHTML = ` <i class="fa-solid fa-trophy"></i>  Winner is  0 `;
                 }
             }
         }
@@ -105,13 +110,13 @@ function checkWinner() {
                 countX++;
                 if (result.length == countX) {
                     winnerWindow.classList.add('active');
-                    winnerText.innerHTML = `'X'  is  win  <i class="fa-solid fa-thumbs-up"></i>`;
+                    winnerText.innerHTML = `<i class="fa-solid fa-trophy"></i>  Winner is  X `;
                 }
             } else if (result[i][j].innerHTML == '0') {
                 countY++;
                 if (result.length == countY) {
                     winnerWindow.classList.add('active');
-                    winnerText.innerHTML = `'0'  is  win  <i class="fa-solid fa-thumbs-up"></i>`;
+                    winnerText.innerHTML = ` <i class="fa-solid fa-trophy"></i>  Winner is  0 `;
                 }
             }
         }
@@ -124,13 +129,13 @@ function checkWinner() {
             countX++;
             if (result.length == countX) {
                 winnerWindow.classList.add('active');
-                winnerText.innerHTML = `'X'  is  win  <i class="fa-solid fa-thumbs-up"></i>`;
+                winnerText.innerHTML = ` <i class="fa-solid fa-trophy"></i>  Winner is  X `;
             }
         } else if (result[i][i].innerHTML == '0') {
             countY++;
             if (result.length == countY) {
                 winnerWindow.classList.add('active');
-                winnerText.innerHTML = `'0'  is  win  <i class="fa-solid fa-thumbs-up"></i>`;
+                winnerText.innerHTML = ` <i class="fa-solid fa-trophy"></i>  Winner is  0 `;
             }
         }
     }
@@ -142,13 +147,13 @@ function checkWinner() {
             countX++;
             if (result.length == countX) {
                 winnerWindow.classList.add('active');
-                winnerText.innerHTML = `'X'  is  win  <i class="fa-solid fa-thumbs-up"></i>`;
+                winnerText.innerHTML = ` <i class="fa-solid fa-trophy"></i>  Winner is  X `;
             }
         } else if (result[j][result.length - 1 - j].innerHTML == '0') {
             countY++;
             if (result.length == countY) {
                 winnerWindow.classList.add('active');
-                winnerText.innerHTML = `'0'  is  win  <i class="fa-solid fa-thumbs-up"></i>`;
+                winnerText.innerHTML = ` <i class="fa-solid fa-trophy"></i>  Winner is  0 `;
             }
         }
     }
@@ -156,11 +161,12 @@ function checkWinner() {
 
 
 
-function restartGame(e) {
+function restartGame() {
     location.reload()
 }
 
 
 function gameQuit() {
-    window.close()
+ window.close()
+ location.reload()
 }
